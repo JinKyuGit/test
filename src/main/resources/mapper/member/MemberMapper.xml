@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.member.mapper.MemberMapper">
+	
+	<select id="selectMember" parameterType="MemberVo" resultType="MemberVo">
+		/* memberMapper.selectMember */
+		select 
+		     userId
+		    ,userPassword
+		    ,userName
+		    ,userEmail
+		from member
+		where userId = #{userId}
+	</select>
+	
+	<insert id="insertMember"  parameterType="MemberVo">
+		/* memberMapper.insertMember */
+		insert into member
+		(
+		 userId
+		,userPassword
+		,userName
+		,userEmail
+		,regDate 
+		)
+		values 
+		(
+		 #{userId}
+		,#{userPassword}
+		,#{userName}
+		,#{userEmail}
+		,date_format(CURRENT_DATE(), '%Y%m%d') 
+		)
+	</insert>
+	
+	<update id="updateMember"  parameterType="MemberVo">
+	/* memberMapper.updateMember */ 
+	update member
+	set 
+	   userPassword = #{userPassword}
+	  ,userName = #{userName}
+	  ,userEmail = #{userEmail}   
+ 	where userId = #{userId}
+	
+	</update>
+	
+	
+</mapper>
