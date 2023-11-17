@@ -59,6 +59,19 @@ public class MemberController {
 		return resultMap;
 	}
 	
+	@PostMapping("/encrypt")
+	public Map<String, Object> encrypt(@RequestBody MemberVo param) throws Exception {
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		resultMap.put("result", memberService.encrypt(param.getUserPassword()));
+		
+		return resultMap;
+	}
+	
+	
+	
+	
 	
 	
 

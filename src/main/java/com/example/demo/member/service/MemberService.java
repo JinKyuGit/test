@@ -17,6 +17,7 @@ public class MemberService {
 		
 		String result = "00"; //성공
 		
+		//비밀번호 암호
 		String password = SHA256.encrypt(param.getUserPassword());
 		
 		// 아이디로만 조회. - 비밀번호 암호화 후 비교.
@@ -76,7 +77,7 @@ public class MemberService {
 		String result = "00";
 			
 		//이전 비밀번호 검증
-		String password = SHA256.encrypt(param.getUserPassword());
+		String password = SHA256.encrypt(param.getBeforePassword());
 		
 		// 아이디로만 조회. - 비밀번호 암호화 후 비교.
 		MemberVo vo = memberMapper.selectMember(param);
@@ -101,6 +102,10 @@ public class MemberService {
 		}
 		
 		return result;
+	}
+	
+	public String encrypt(String text) throws Exception {
+		return SHA256.encrypt(text);
 	}
 
 }
